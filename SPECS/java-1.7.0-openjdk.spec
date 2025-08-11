@@ -211,7 +211,7 @@
 
 Name:    java-%{javaver}-%{origin}
 Version: %{javaver}.%{updatever}
-Release: %{icedtea_version}%{icedtea_snapshot}.5%{?dist}
+Release: %{icedtea_version}%{icedtea_snapshot}.6%{?dist}
 # java-1.5.0-ibm from jpackage.org set Epoch to 1 for unknown reasons,
 # and this change was brought into RHEL-4.  java-1.5.0-ibm packages
 # also included the epoch in their virtual provides.  This created a
@@ -338,6 +338,7 @@ Patch501: pr3393-rh1273760-support_rsaandmgf1_with_sha_in_pkcs11.patch
 Patch600: CVE-2022-21476.patch
 Patch601: CVE-2022-34169.patch
 Patch602: CVE-2024-20952.patch
+Patch603: CVE-2025-50059.patch
 
 BuildRequires: autoconf
 BuildRequires: automake
@@ -588,6 +589,7 @@ cp %{SOURCE2} .
 %patch600
 %patch601
 %patch602
+#patch603 -p1
 
 # Add systemtap patches if enabled
 %if %{with_systemtap}
@@ -1519,6 +1521,9 @@ exit 0
 %{_jvmdir}/%{jredir}/lib/accessibility.properties
 
 %changelog
+* Thu Jul 31 2025 Trinity Quirk <tquirk@ciq.com> - 1:1.7.0.261-2.6.22.6
+- Patch CVE-2025-50059
+
 * Tue Jul 18 2024 Matt Hink <mhink@ciq.com> - 1:1.7.0.261-2.6.22.5
 - Fix CVE-2024-20952
 
